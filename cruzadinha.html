@@ -3,47 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cruzadinha de Arquitetura Computacional</title>
-  <link rel="stylesheet" href="Cruzadinha.css">
+  <title>PAC-CRUZ · Cruzadinha de Arquitetura Computacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="icon" type="image/svg+xml" href="https://images.macrumors.com/t/uZP056EQPlzbhPPOfr0M7j_SZVw=/1600x0/article-new/2014/01/pacman.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./Cruzadinha.css">
 </head>
 <body>
 
-  <header class="topo">
-    <h1 class="topo-titulo">Cruzadinha de Arquitetura Computacional</h1>
-    <p class="topo-texto">
-      Leia a pista, descubra o termo e digite as letras direto no tabuleiro.
-      Clique numa casa já selecionada para trocar entre horizontal e vertical.
-    </p>
-  </header>
+  <div class="gabinete" id="gabinete">
 
-  <main class="jogo">
-
-    <section class="area-tabuleiro" aria-label="Tabuleiro">
-      <div class="barra">
-        <button type="button" class="botao botao-principal" id="btnConferir">Conferir</button>
-        <button type="button" class="botao" id="btnReiniciar">Reiniciar</button>
-        <p class="contador" id="contador" aria-live="polite">0 de 16 palavras</p>
+    <header class="marquee">
+      <div class="fantasmas" aria-hidden="true">
+        <span class="fantasma fantasma-vermelho"></span>
+        <span class="fantasma fantasma-rosa"></span>
+        <span class="fantasma fantasma-ciano"></span>
+        <span class="fantasma fantasma-laranja"></span>
       </div>
-      <p class="mensagem" id="mensagem" aria-live="polite"></p>
+      <h1 class="marquee-titulo">PAC-CRUZ</h1>
+      <p class="marquee-sub">Cruzadinha de Arquitetura Computacional</p>
+    </header>
 
-      <div class="rolagem">
-        <div class="tabuleiro" id="tabuleiro"></div>
+    <section class="historia">
+      <p>
+        O Pac-Man ficou preso dentro do gabinete do fliperama! A trava só abre
+        quando as 16 palavras da cruzadinha estiverem certas. Leia as pistas,
+        digite as respostas e ajude-o a escapar.
+      </p>
+    </section>
+
+    <section class="fase" aria-hidden="true">
+      <div class="trilha">
+        <div class="pista-pac" id="pistaPac">
+          <span class="pacman" id="pacman"></span>
+        </div>
+        <div class="saida">
+          <span class="saida-icone" id="cadeado">🔒</span>
+          <span class="saida-texto">SAÍDA</span>
+        </div>
       </div>
     </section>
 
-    <section class="area-pistas" aria-label="Pistas">
-      <div class="bloco-pistas">
-        <h2 class="bloco-titulo">Horizontais</h2>
-        <ol class="lista-pistas" id="pistasH"></ol>
-      </div>
-      <div class="bloco-pistas">
-        <h2 class="bloco-titulo">Verticais</h2>
-        <ol class="lista-pistas" id="pistasV"></ol>
-      </div>
-    </section>
+    <main class="jogo">
 
-  </main>
+      <section class="tela" aria-label="Tabuleiro">
+        <div class="barra">
+          <button type="button" class="botao botao-principal" id="btnConferir">Conferir</button>
+          <button type="button" class="botao botao-ciano" id="btnReiniciar">Reiniciar</button>
+          <p class="contador" id="contador" aria-live="polite">0 de 16 palavras</p>
+        </div>
+        <p class="mensagem" id="mensagem" aria-live="polite"></p>
 
-  <script src="Cruzadinha.js"></script>
+        <div class="rolagem">
+          <div class="tabuleiro" id="tabuleiro"></div>
+        </div>
+      </section>
+
+      <section class="area-pistas" aria-label="Pistas">
+        <div class="bloco-pistas">
+          <h2 class="bloco-titulo">Horizontais</h2>
+          <ol class="lista-pistas" id="pistasH"></ol>
+        </div>
+        <div class="bloco-pistas">
+          <h2 class="bloco-titulo">Verticais</h2>
+          <ol class="lista-pistas" id="pistasV"></ol>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="./Cruzadinha.js"></script>
 </body>
 </html>

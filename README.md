@@ -1,12 +1,21 @@
-# Game_Cruzadinha
+<div align="center">
 
-# 🧩 Cruzadinha de Arquitetura Computacional
+# 🟡 PAC-CRUZ
 
-**Descubra 16 termos de hardware lendo apenas as pistas.**
+### Cruzadinha de Arquitetura Computacional
+
+**O Pac-Man está preso dentro do gabinete. Resolva a cruzadinha para soltá-lo!**
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?logo=github&logoColor=white)
 
 ### 👉 [**Jogar agora**](https://SEU-USUARIO.github.io/arqcomp-cruzadinha/) 👈
 
+</div>
 
+---
 
 ## 📖 Sobre o projeto
 
@@ -14,13 +23,20 @@ Jogo de palavras cruzadas que roda direto no navegador, feito com **HTML, CSS e 
 
 Para escrever uma boa pista é preciso entender o conceito. Por isso, todas as pistas foram escritas com palavras próprias, sem entregar a resposta.
 
+## 👾 A história
+
+O Pac-Man ficou preso dentro do gabinete do fliperama, e a saída está trancada 🔒. A trava só abre quando as **16 palavras** da cruzadinha estiverem certas:
+
+- cada palavra certa faz o Pac-Man avançar e comer uma bolinha;
+- com 16 de 16, o gabinete acende em amarelo, o cadeado abre 🔓 e o Pac-Man foge pela porta de **SAÍDA**.
+
 ## 🎮 Como jogar
 
 1. **Leia as pistas** numeradas, separadas em *Horizontais* e *Verticais*.
 2. **Clique numa casa** do tabuleiro e digite as letras. Use letras sem acento e sem espaço (por exemplo, `MEMORIADEMASSA`).
 3. **Troque a direção** clicando de novo na casa selecionada ou apertando a barra de espaço.
 4. **Clique em Conferir** para ver quais palavras estão certas e quais estão erradas.
-5. **Clique em Reiniciar** para limpar o tabuleiro e jogar de novo.
+5. **Clique em Reiniciar** para limpar o tabuleiro, trancar o gabinete e jogar de novo.
 
 ### ⌨️ Atalhos
 
@@ -37,7 +53,7 @@ Para escrever uma boa pista é preciso entender o conceito. Por isso, todas as p
 | Cor | Significado |
 |---|---|
 | 🟨 Amarelo | Casa onde está o cursor |
-| 🟦 Azul claro | Palavra selecionada |
+| 🟦 Azul escuro | Palavra selecionada |
 | 🟩 Verde | Palavra certa depois de Conferir |
 | 🟥 Vermelho | Casa preenchida de uma palavra errada |
 
@@ -51,6 +67,8 @@ Depois de Conferir, cada pista também mostra o texto **✓ certa**, **✗ errad
 - Botão **Conferir** com resultado por palavra
 - **Contador de acertos** (`X de 16 palavras`)
 - Botão **Reiniciar**
+- Tema de fliperama: gabinete, fantasmas, bolinhas e um Pac-Man animado só com CSS
+- Progresso visual: o Pac-Man avança conforme as palavras certas e abre a saída no final
 - Layout responsivo, que funciona no celular
 - Foco visível e textos de status, pensando em acessibilidade
 
@@ -87,7 +105,7 @@ Depois de Conferir, cada pista também mostra o texto **✓ certa**, **✗ errad
 ```
 arqcomp-cruzadinha/
 ├── index.html   # estrutura da página
-├── style.css    # visual do jogo
+├── style.css    # visual do jogo (tema fliperama)
 ├── script.js    # lógica: tabuleiro, digitação, Conferir e Reiniciar
 └── README.md    # este arquivo
 ```
@@ -98,6 +116,7 @@ arqcomp-cruzadinha/
 - O JavaScript monta o tabuleiro e a numeração a partir desses dados, percorrendo a grade em ordem de leitura.
 - Casas compartilhadas por duas palavras são criadas uma única vez, e é isso que faz o cruzamento funcionar.
 - O **Conferir** compara, palavra por palavra, o que foi digitado com a resposta esperada.
+- O número de acertos define a posição do Pac-Man (uma variável CSS) e quantas bolinhas já foram comidas. Com todas as palavras certas, o gabinete ganha a classe `livre` e a saída abre.
 
 ## 💻 Rodando localmente
 
@@ -124,5 +143,12 @@ As mensagens de commit seguem o padrão `tipo: descrição curta`:
 | `style` | visual |
 | `docs` | documentação |
 
+---
+
+<div align="center">
 
 Feito para a disciplina de **Arquitetura Computacional** · SPTECH
+
+*Pac-Man é uma marca de seus respectivos donos. Aqui o personagem é desenhado só com CSS, em homenagem e para fins educacionais.*
+
+</div>

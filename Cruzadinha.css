@@ -1,18 +1,20 @@
-/* Paleta inspirada nas cores da SPTECH */
+/* ============================================================
+   PAC-CRUZ · tema fliperama
+   ============================================================ */
 :root {
-  --tinta: #1b2440;
-  --papel: #eef2f7;
-  --branco: #ffffff;
-  --linha: #b9c4d6;
-  --azul: #1565c0;
-  --azul-claro: #d8e7fa;
-  --amarelo: #ffd966;
-  --rosa: #d8115a;
-  --certa-fundo: #d3f0df;
-  --certa-borda: #1e8e5a;
-  --errada-fundo: #fbdbe2;
-  --errada-borda: #c2204a;
-  --casa: clamp(24px, calc((100vw - 40px) / 16), 38px);
+  --preto: #05050f;
+  --parede: #2121de;
+  --parede-clara: #8a95ff;
+  --parede-escura: #14146e;
+  --amarelo: #ffe600;
+  --ciano: #00e5ff;
+  --rosa: #ff7ac6;
+  --laranja: #ffa63d;
+  --vermelho: #ff3b4e;
+  --verde: #2bff88;
+  --texto: #eef0ff;
+  --fonte-arcade: "Press Start 2P", ui-monospace, "Courier New", monospace;
+  --casa: clamp(24px, calc((100vw - 64px) / 16), 38px);
 }
 
 * {
@@ -21,40 +23,244 @@
 
 body {
   margin: 0;
-  background: var(--papel);
-  color: var(--tinta);
-  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  min-height: 100vh;
+  padding: 14px;
+  background-color: #02020a;
+  background-image: radial-gradient(rgba(255, 230, 0, 0.12) 2px, transparent 2.5px);
+  background-size: 40px 40px;
+  color: var(--texto);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Courier New", monospace;
   line-height: 1.5;
 }
 
-/* ---------- Topo ---------- */
-.topo {
-  padding: 24px 20px 16px;
-  max-width: 1100px;
+/* ---------- Gabinete ---------- */
+.gabinete {
+  max-width: 1120px;
   margin: 0 auto;
+  background: var(--preto);
+  border: 6px solid var(--parede);
+  border-radius: 28px;
+  box-shadow: 0 0 0 3px #000, 0 0 26px rgba(33, 33, 222, 0.85),
+    inset 0 0 34px rgba(33, 33, 222, 0.35);
+  padding-bottom: 28px;
+  overflow: hidden;
+  transition: border-color 0.6s, box-shadow 0.6s;
 }
 
-.topo-titulo {
-  margin: 0 0 6px;
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  padding-left: 12px;
-  border-left: 6px solid var(--rosa);
+.gabinete.livre {
+  border-color: var(--amarelo);
+  box-shadow: 0 0 0 3px #000, 0 0 30px rgba(255, 230, 0, 0.8),
+    inset 0 0 34px rgba(255, 230, 0, 0.25);
 }
 
-.topo-texto {
+/* ---------- Letreiro ---------- */
+.marquee {
+  text-align: center;
+  padding: 22px 16px 16px;
+  background: linear-gradient(#10104a, var(--preto));
+  border-bottom: 4px solid var(--parede);
+}
+
+.marquee-titulo {
+  margin: 0 0 10px;
+  font-family: var(--fonte-arcade);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 5.5vw, 2.5rem);
+  color: var(--amarelo);
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 #b36b00, 0 0 14px rgba(255, 230, 0, 0.55);
+}
+
+.marquee-sub {
   margin: 0;
-  max-width: 62ch;
-  color: #44506b;
+  font-size: 0.95rem;
+  color: var(--ciano);
 }
 
-/* ---------- Layout geral ---------- */
-.jogo {
-  max-width: 1100px;
+/* ---------- Fantasmas ---------- */
+.fantasmas {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.fantasma {
+  --cor: var(--vermelho);
+  position: relative;
+  width: 26px;
+  height: 26px;
+  background: var(--cor);
+  border-radius: 13px 13px 0 0;
+  animation: flutuar 1.6s ease-in-out infinite;
+}
+
+.fantasma::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 9px 10px, #1c2bff 1.8px, transparent 2px),
+    radial-gradient(circle at 19px 10px, #1c2bff 1.8px, transparent 2px),
+    radial-gradient(circle at 8px 10px, #fff 3.6px, transparent 4px),
+    radial-gradient(circle at 18px 10px, #fff 3.6px, transparent 4px);
+}
+
+.fantasma::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 6px;
+  background: radial-gradient(circle at 50% 0, transparent 3px, var(--cor) 3.6px) 0 0 / 8.67px 6px repeat-x;
+}
+
+.fantasma-vermelho { --cor: var(--vermelho); }
+.fantasma-rosa { --cor: var(--rosa); animation-delay: 0.2s; }
+.fantasma-ciano { --cor: var(--ciano); animation-delay: 0.4s; }
+.fantasma-laranja { --cor: var(--laranja); animation-delay: 0.6s; }
+
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ---------- História ---------- */
+.historia {
+  padding: 16px 20px 6px;
+}
+
+.historia p {
+  max-width: 70ch;
   margin: 0 auto;
-  padding: 8px 20px 40px;
+  text-align: center;
+  color: #d4d8ff;
+}
+
+/* ---------- Trilha do Pac-Man ---------- */
+.fase {
+  padding: 10px 20px 4px;
+}
+
+.trilha {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: #000;
+  border: 3px solid var(--parede);
+  border-radius: 40px;
+}
+
+.pista-pac {
+  position: relative;
+  flex: 1;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 34px;
+}
+
+.bolinha {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffcfb0;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.bolinha.comida {
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Pac-Man feito só com CSS: duas metades que abrem e fecham a boca */
+.pacman {
+  --tam: 30px;
+  position: absolute;
+  top: 2px;
+  left: calc(var(--prog, 0) * (100% - var(--tam)));
+  width: var(--tam);
+  height: var(--tam);
+  transition: left 1.2s linear;
+}
+
+.pacman::before,
+.pacman::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: var(--tam);
+  height: calc(var(--tam) / 2);
+  background: var(--amarelo);
+}
+
+.pacman::before {
+  top: 0;
+  border-radius: 15px 15px 0 0;
+  transform-origin: 50% 100%;
+  animation: boca-cima 0.3s ease-in-out infinite alternate;
+}
+
+.pacman::after {
+  bottom: 0;
+  border-radius: 0 0 15px 15px;
+  transform-origin: 50% 0;
+  animation: boca-baixo 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes boca-cima {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-35deg); }
+}
+
+@keyframes boca-baixo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(35deg); }
+}
+
+.saida {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 3px solid var(--parede-clara);
+  border-radius: 10px;
+  font-family: var(--fonte-arcade);
+  font-size: 0.6rem;
+  color: var(--parede-clara);
+  white-space: nowrap;
+}
+
+.gabinete.livre .saida {
+  border-color: var(--amarelo);
+  color: var(--amarelo);
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.7);
+  animation: pulsar 0.8s ease-in-out infinite alternate;
+}
+
+/* Quando o gabinete abre, o Pac-Man sai pela porta */
+.gabinete.livre .pacman {
+  animation: sair 0.6s 1.4s forwards;
+}
+
+@keyframes pulsar {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+@keyframes sair {
+  to { opacity: 0; transform: translateX(50px); }
+}
+
+/* ---------- Layout do jogo ---------- */
+.jogo {
+  padding: 14px 20px 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 28px;
+  gap: 24px;
 }
 
 @media (min-width: 960px) {
@@ -64,7 +270,14 @@ body {
   }
 }
 
-/* ---------- Barra de botões ---------- */
+.tela {
+  padding: 14px;
+  background: #000;
+  border: 3px solid var(--parede);
+  border-radius: 14px;
+}
+
+/* ---------- Botões estilo fliperama ---------- */
 .barra {
   display: flex;
   flex-wrap: wrap;
@@ -73,46 +286,58 @@ body {
 }
 
 .botao {
-  font: inherit;
-  font-weight: 600;
-  padding: 8px 18px;
-  border: 2px solid var(--tinta);
-  background: var(--branco);
-  color: var(--tinta);
-  border-radius: 6px;
+  font-family: var(--fonte-arcade);
+  font-size: 0.65rem;
+  padding: 11px 16px;
+  background: #000;
+  color: var(--amarelo);
+  border: 3px solid var(--amarelo);
+  border-radius: 999px;
   cursor: pointer;
 }
 
 .botao:hover {
-  background: var(--azul-claro);
+  background: var(--amarelo);
+  color: #000;
 }
 
 .botao:focus-visible {
-  outline: 3px solid var(--azul);
-  outline-offset: 2px;
+  outline: 3px solid #fff;
+  outline-offset: 3px;
 }
 
 .botao-principal {
-  background: var(--tinta);
-  color: var(--branco);
+  background: var(--amarelo);
+  color: #000;
 }
 
 .botao-principal:hover {
-  background: var(--azul);
-  border-color: var(--azul);
+  background: #fff;
+  border-color: #fff;
+}
+
+.botao-ciano {
+  color: var(--ciano);
+  border-color: var(--ciano);
+}
+
+.botao-ciano:hover {
+  background: var(--ciano);
 }
 
 .contador {
   margin: 0 0 0 6px;
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-family: var(--fonte-arcade);
+  font-size: 0.75rem;
+  color: var(--amarelo);
 }
 
 .mensagem {
-  min-height: 1.5em;
-  margin: 8px 0;
-  font-weight: 600;
-  color: var(--certa-borda);
+  min-height: 3em;
+  margin: 10px 0 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--verde);
 }
 
 /* ---------- Tabuleiro ---------- */
@@ -134,9 +359,9 @@ body {
 
 .casa {
   position: relative;
-  background: var(--branco);
-  border: 1.5px solid var(--tinta);
-  margin: -0.75px;
+  background: #000;
+  border: 2px solid var(--parede);
+  margin: -1px;
 }
 
 .casa-numero {
@@ -146,7 +371,7 @@ body {
   font-size: 0.6rem;
   line-height: 1;
   font-weight: 700;
-  color: var(--azul);
+  color: var(--ciano);
   pointer-events: none;
 }
 
@@ -160,7 +385,7 @@ body {
   font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-weight: 700;
   font-size: calc(var(--casa) * 0.5);
-  color: var(--tinta);
+  color: var(--amarelo);
   text-transform: uppercase;
   caret-color: transparent;
   cursor: pointer;
@@ -170,37 +395,59 @@ body {
   outline: none;
 }
 
-/* Estados da casa */
 .casa.ativa {
-  background: var(--azul-claro);
+  background: var(--parede-escura);
 }
 
 .casa.atual {
   background: var(--amarelo);
 }
 
+.casa.atual .casa-letra {
+  color: #000;
+}
+
+.casa.atual .casa-numero {
+  color: #000;
+}
+
 .casa.certa {
-  background: var(--certa-fundo);
-  border-color: var(--certa-borda);
+  background: #063a20;
+  border-color: var(--verde);
   z-index: 1;
 }
 
+.casa.certa .casa-letra {
+  color: var(--verde);
+}
+
 .casa.errada {
-  background: var(--errada-fundo);
-  border-color: var(--errada-borda);
+  background: #4d0c18;
+  border-color: var(--vermelho);
   z-index: 1;
+}
+
+.casa.errada .casa-letra {
+  color: #ff9aa5;
 }
 
 /* ---------- Pistas ---------- */
 .bloco-pistas {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  background: #000;
+  border: 3px solid var(--parede);
+  border-radius: 14px;
 }
 
 .bloco-titulo {
-  margin: 0 0 8px;
-  font-size: 1.1rem;
-  padding-bottom: 4px;
-  border-bottom: 2px solid var(--tinta);
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  font-family: var(--fonte-arcade);
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--rosa);
+  border-bottom: 2px dashed var(--parede);
 }
 
 .lista-pistas {
@@ -216,32 +463,33 @@ body {
   border-left: 4px solid transparent;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  color: #e8ebff;
 }
 
 .pista:hover {
-  background: var(--azul-claro);
+  background: var(--parede-escura);
 }
 
 .pista.destacada {
-  background: var(--amarelo);
-  border-left-color: var(--tinta);
+  background: var(--parede-escura);
+  border-left-color: var(--amarelo);
 }
 
 .pista.certa {
-  border-left-color: var(--certa-borda);
-  background: var(--certa-fundo);
+  background: #063a20;
+  border-left-color: var(--verde);
 }
 
 .pista.errada {
-  border-left-color: var(--errada-borda);
-  background: var(--errada-fundo);
+  background: #4d0c18;
+  border-left-color: var(--vermelho);
 }
 
 .pista-numero {
-  min-width: 1.6em;
+  min-width: 1.8em;
   font-weight: 700;
-  color: var(--azul);
+  color: var(--ciano);
 }
 
 .pista-texto {
@@ -254,9 +502,10 @@ body {
 }
 
 .pista.certa .pista-status {
-  color: var(--certa-borda);
+  color: var(--verde);
 }
 
 .pista.errada .pista-status {
-  color: var(--errada-borda);
+  color: #ff9aa5;
 }
+

@@ -57,6 +57,13 @@ const contador = document.querySelector("#contador");
 const mensagem = document.querySelector("#mensagem");
 const listaH = document.querySelector("#pistasH");
 const listaV = document.querySelector("#pistasV");
+const gabinete = document.querySelector("#gabinete");
+const pistaPac = document.querySelector("#pistaPac");
+const pacman = document.querySelector("#pacman");
+const cadeado = document.querySelector("#cadeado");
+
+const MENSAGEM_INICIAL = "READY! O Pac-Man está preso no gabinete. Resolva a cruzadinha para soltá-lo.";
+const bolinhas = [];   // uma bolinha para cada palavra
 
 // ============================================================
 // 1) Preparar os dados
@@ -398,11 +405,51 @@ function conferir() {
 
   contador.textContent = acertos + " de " + PALAVRAS.length + " palavras";
 
+  atualizarProgresso(acertos);
+
   if (acertos === PALAVRAS.length) {
-    mensagem.textContent = "Parabéns! Você completou a cruzadinha.";
+    mensagem.textContent = "O Pac-Man escapou! Você destravou o gabinete.";
+  } else if (acertos === 0) {
+    mensagem.textContent = "O gabinete continua trancado. Resolva a cruzadinha para soltar o Pac-Man.";
   } else {
-    mensagem.textContent = "";
+    const faltam = PALAVRAS.length - acertos;
+    mensagem.textContent = "O Pac-Man comeu " + acertos + " bolinhas. Faltam " + faltam + " palavras para destravar o gabinete.";
   }
+}
+
+// ============================================================
+// Pac-Man: bolinhas, posição e saída
+// ============================================================
+function criarBolinhas() {
+  for (let i = 0; i < PALAVRAS.length; i++) {
+    const b = document.createElement("span");
+    b.className = "bolinha";
+    pistaPac.appendChild(b);
+    bolinhas.push(b);
+  }
+}
+
+function atualizarProgresso(acertos) {
+  const total = PALAVRAS.length;
+
+  // o Pac-Man anda até a posição do progresso
+  pacman.style.setProperty("--prog", acertos / total);
+
+  // as bolinhas por onde ele passou somem, uma depois da outra
+  bolinhas.forEach(function (b, i) {
+    if (i < acertos) {
+      b.style.transitionDelay = ((i + 1) / acertos) * 1.1 + "s";
+      b.classList.add("comida");
+    } else {
+      b.style.transitionDelay = "0s";
+      b.classList.remove("comida");
+    }
+  });
+
+  // todas certas: o gabinete abre
+  const livre = acertos === total;
+  gabinete.classList.toggle("livre", livre);
+  cadeado.textContent = livre ? "🔓" : "🔒";
 }
 
 // ============================================================
@@ -427,7 +474,8 @@ function reiniciar() {
   chaveAtual = null;
   direcao = "H";
   contador.textContent = "0 de " + PALAVRAS.length + " palavras";
-  mensagem.textContent = "";
+  mensagem.textContent = MENSAGEM_INICIAL;
+  atualizarProgresso(0);
 }
 
 // ============================================================
@@ -437,6 +485,9 @@ prepararPalavras();
 desenharTabuleiro();
 desenharPistas();
 contador.textContent = "0 de " + PALAVRAS.length + " palavras";
+mensagem.textContent = MENSAGEM_INICIAL;
+criarBolinhas();
+atualizarProgresso(0);
 
 document.querySelector("#btnConferir").addEventListener("click", conferir);
 document.querySelector("#btnReiniciar").addEventListener("click", reiniciar);
