@@ -1,0 +1,262 @@
+/* Paleta inspirada nas cores da SPTECH */
+:root {
+  --tinta: #1b2440;
+  --papel: #eef2f7;
+  --branco: #ffffff;
+  --linha: #b9c4d6;
+  --azul: #1565c0;
+  --azul-claro: #d8e7fa;
+  --amarelo: #ffd966;
+  --rosa: #d8115a;
+  --certa-fundo: #d3f0df;
+  --certa-borda: #1e8e5a;
+  --errada-fundo: #fbdbe2;
+  --errada-borda: #c2204a;
+  --casa: clamp(24px, calc((100vw - 40px) / 16), 38px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  padding: 24px 20px 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.topo-titulo {
+  margin: 0 0 6px;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  padding-left: 12px;
+  border-left: 6px solid var(--rosa);
+}
+
+.topo-texto {
+  margin: 0;
+  max-width: 62ch;
+  color: #44506b;
+}
+
+/* ---------- Layout geral ---------- */
+.jogo {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 20px 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 960px) {
+  .jogo {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+  }
+}
+
+/* ---------- Barra de botões ---------- */
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.botao {
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 18px;
+  border: 2px solid var(--tinta);
+  background: var(--branco);
+  color: var(--tinta);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.botao:hover {
+  background: var(--azul-claro);
+}
+
+.botao:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+.botao-principal {
+  background: var(--tinta);
+  color: var(--branco);
+}
+
+.botao-principal:hover {
+  background: var(--azul);
+  border-color: var(--azul);
+}
+
+.contador {
+  margin: 0 0 0 6px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.mensagem {
+  min-height: 1.5em;
+  margin: 8px 0;
+  font-weight: 600;
+  color: var(--certa-borda);
+}
+
+/* ---------- Tabuleiro ---------- */
+.rolagem {
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(16, var(--casa));
+  grid-auto-rows: var(--casa);
+  width: max-content;
+}
+
+.vazia {
+  background: transparent;
+}
+
+.casa {
+  position: relative;
+  background: var(--branco);
+  border: 1.5px solid var(--tinta);
+  margin: -0.75px;
+}
+
+.casa-numero {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  font-size: 0.6rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--azul);
+  pointer-events: none;
+}
+
+.casa-letra {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 6px 0 0;
+  background: transparent;
+  text-align: center;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-weight: 700;
+  font-size: calc(var(--casa) * 0.5);
+  color: var(--tinta);
+  text-transform: uppercase;
+  caret-color: transparent;
+  cursor: pointer;
+}
+
+.casa-letra:focus {
+  outline: none;
+}
+
+/* Estados da casa */
+.casa.ativa {
+  background: var(--azul-claro);
+}
+
+.casa.atual {
+  background: var(--amarelo);
+}
+
+.casa.certa {
+  background: var(--certa-fundo);
+  border-color: var(--certa-borda);
+  z-index: 1;
+}
+
+.casa.errada {
+  background: var(--errada-fundo);
+  border-color: var(--errada-borda);
+  z-index: 1;
+}
+
+/* ---------- Pistas ---------- */
+.bloco-pistas {
+  margin-bottom: 20px;
+}
+
+.bloco-titulo {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--tinta);
+}
+
+.lista-pistas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pista {
+  display: flex;
+  gap: 8px;
+  padding: 6px 8px;
+  border-left: 4px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.pista:hover {
+  background: var(--azul-claro);
+}
+
+.pista.destacada {
+  background: var(--amarelo);
+  border-left-color: var(--tinta);
+}
+
+.pista.certa {
+  border-left-color: var(--certa-borda);
+  background: var(--certa-fundo);
+}
+
+.pista.errada {
+  border-left-color: var(--errada-borda);
+  background: var(--errada-fundo);
+}
+
+.pista-numero {
+  min-width: 1.6em;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.pista-texto {
+  flex: 1;
+}
+
+.pista-status {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pista.certa .pista-status {
+  color: var(--certa-borda);
+}
+
+.pista.errada .pista-status {
+  color: var(--errada-borda);
+}
