@@ -509,3 +509,222 @@ body {
   color: #ff9aa5;
 }
 
+/* ---------- Quem prefere menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   Você sabia? e botão Cards
+   ============================================================ */
+.botao-rosa {
+  color: var(--rosa);
+  border-color: var(--rosa);
+}
+
+.botao-rosa:hover {
+  background: var(--rosa);
+  color: #000;
+}
+
+.voce-sabia {
+  min-height: 6.4em;
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  background: #0b0b25;
+  border: 3px dashed var(--rosa);
+  border-radius: 10px;
+}
+
+.voce-sabia-titulo {
+  margin: 0 0 8px;
+  font-family: var(--fonte-arcade);
+  font-size: 0.62rem;
+  line-height: 1.6;
+  color: var(--rosa);
+}
+
+.voce-sabia-texto {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #e8ebff;
+}
+
+.voce-sabia.nova {
+  animation: destacar-curiosidade 0.9s ease-out;
+}
+
+@keyframes destacar-curiosidade {
+  from {
+    border-color: var(--amarelo);
+    box-shadow: 0 0 16px rgba(255, 230, 0, 0.8);
+  }
+  to {
+    border-color: var(--rosa);
+    box-shadow: none;
+  }
+}
+
+/* ---------- Janela dos cards ---------- */
+.modal-cards {
+  width: min(1040px, 94vw);
+  max-height: 90vh;
+  padding: 16px;
+  background: var(--preto);
+  color: var(--texto);
+  border: 4px solid var(--parede);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(33, 33, 222, 0.8);
+}
+
+.modal-cards::backdrop {
+  background: rgba(0, 0, 8, 0.82);
+}
+
+.modal-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-titulo {
+  margin: 0;
+  font-family: var(--fonte-arcade);
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--amarelo);
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-texto {
+  margin: 10px 0 14px;
+  font-size: 0.9rem;
+  color: #cfd4ff;
+}
+
+.grade-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+/* ---------- Card que vira ---------- */
+.card {
+  height: 250px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  perspective: 900px;
+}
+
+.card:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+
+.card-interno {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card.virado .card-interno {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  background: #000;
+  border: 3px solid var(--parede);
+  border-radius: 14px;
+  overflow: auto;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-frente {
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.card-numero {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-family: var(--fonte-arcade);
+  font-size: 0.55rem;
+  color: var(--ciano);
+}
+
+.card-termo {
+  font-family: var(--fonte-arcade);
+  font-size: 0.72rem;
+  line-height: 1.7;
+  color: var(--amarelo);
+  overflow-wrap: anywhere;
+}
+
+.card-dica {
+  font-size: 0.72rem;
+  color: #9aa3d6;
+}
+
+.card-verso {
+  gap: 8px;
+  transform: rotateY(180deg);
+  background: var(--parede-escura);
+  border-color: var(--amarelo);
+  font-size: 0.82rem;
+}
+
+.card-titulo-verso {
+  font-family: var(--fonte-arcade);
+  font-size: 0.6rem;
+  line-height: 1.6;
+  color: var(--amarelo);
+}
+
+.card-extenso {
+  font-weight: 700;
+  color: var(--ciano);
+}
+
+.card-definicao {
+  color: #eef0ff;
+}
+
+/* termo já acertado na cruzadinha */
+.card.resolvida .card-frente {
+  border-color: var(--verde);
+}
+
+.card.resolvida .card-frente::after {
+  content: "✓";
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  font-weight: 700;
+  color: var(--verde);
+}
