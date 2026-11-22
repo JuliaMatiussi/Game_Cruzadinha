@@ -83,7 +83,7 @@ Depois de Conferir, cada pista também mostra o texto **✓ certa**, **✗ errad
 
 <div align="center">
 
-Feito para a disciplina de **Arquitetura Computacional** · SPTECH
+Feito para a disciplina de **Arquitetura Computacional** 
 
 *Pac-Man é uma marca de seus respectivos donos. Aqui o personagem é desenhado só com CSS, em homenagem e para fins educacionais.*
 
