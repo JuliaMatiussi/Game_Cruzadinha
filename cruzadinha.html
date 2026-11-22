@@ -6,8 +6,8 @@
   <title>PAC-CRUZ · Cruzadinha de Arquitetura Computacional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link rel="icon" type="image/svg+xml" href="https://images.macrumors.com/t/uZP056EQPlzbhPPOfr0M7j_SZVw=/1600x0/article-new/2014/01/pacman.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="https://images.macrumors.com/t/uZP056EQPlzbhPPOfr0M7j_SZVw=/1600x0/article-new/2014/01/pacman.jpg">
   <link rel="stylesheet" href="./Cruzadinha.css">
 </head>
 <body>
@@ -51,9 +51,15 @@
         <div class="barra">
           <button type="button" class="botao botao-principal" id="btnConferir">Conferir</button>
           <button type="button" class="botao botao-ciano" id="btnReiniciar">Reiniciar</button>
+          <button type="button" class="botao botao-rosa" id="btnCards">Cards</button>
           <p class="contador" id="contador" aria-live="polite">0 de 16 palavras</p>
         </div>
         <p class="mensagem" id="mensagem" aria-live="polite"></p>
+
+        <aside class="voce-sabia" id="voceSabia" aria-live="polite">
+          <p class="voce-sabia-titulo" id="voceSabiaTitulo">Você sabia?</p>
+          <p class="voce-sabia-texto" id="voceSabiaTexto"></p>
+        </aside>
 
         <div class="rolagem">
           <div class="tabuleiro" id="tabuleiro"></div>
@@ -75,6 +81,21 @@
 
   </div>
 
-  <script src="./Cruzadinha.js"></script>
+  <dialog class="modal-cards" id="dialogCards" aria-labelledby="tituloCards">
+    <div class="modal-topo">
+      <h2 class="modal-titulo" id="tituloCards">Cards de estudo</h2>
+      <div class="modal-botoes">
+        <button type="button" class="botao botao-ciano" id="btnDesvirar">Desvirar todos</button>
+        <button type="button" class="botao" id="btnFecharCards">Fechar</button>
+      </div>
+    </div>
+    <p class="modal-texto">
+      Os 16 termos da aula. Clique num card para virar e ver o que ele significa.
+      Os termos que você já acertou na cruzadinha ficam marcados com ✓.
+    </p>
+    <div class="grade-cards" id="gradeCards"></div>
+  </dialog>
+
+  <script src="script.js"></script>
 </body>
 </html>
