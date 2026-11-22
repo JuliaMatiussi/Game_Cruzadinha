@@ -28,8 +28,10 @@ O Pac-Man ficou preso dentro do gabinete do fliperama, e a saída está trancada
 1. **Leia as pistas** numeradas, separadas em *Horizontais* e *Verticais*.
 2. **Clique numa casa** do tabuleiro e digite as letras. Use letras sem acento e sem espaço (por exemplo, `MEMORIADEMASSA`).
 3. **Troque a direção** clicando de novo na casa selecionada ou apertando a barra de espaço.
-4. **Clique em Conferir** para ver quais palavras estão certas e quais estão erradas.
-5. **Clique em Reiniciar** para limpar o tabuleiro, trancar o gabinete e jogar de novo.
+4. **Veja na hora:** ao completar uma palavra, o jogo já mostra se ela está certa ou errada. Quando você acerta, aparece uma curiosidade em **Você sabia?**.
+5. **Clique em Conferir** para ver o resultado de todas as palavras de uma vez, inclusive as que ainda estão incompletas.
+6. **Clique em Reiniciar** para limpar o tabuleiro, trancar o gabinete e jogar de novo.
+7. **Clique em Cards** para abrir os cards de estudo com os 16 termos da aula. Clique num card para virar e ver o que o termo significa.
 
 ### ⌨️ Atalhos
 
@@ -57,7 +59,10 @@ Depois de Conferir, cada pista também mostra o texto **✓ certa**, **✗ errad
 - Tabuleiro de 14×16 com **16 palavras cruzadas entre si**
 - Pistas numeradas em Horizontais e Verticais
 - Digitação direta nas casas, com navegação por teclado
-- Botão **Conferir** com resultado por palavra
+- **Verificação imediata:** cada palavra é conferida assim que a última letra é digitada
+- **Você sabia?:** uma curiosidade sobre o termo aparece sempre que você acerta uma palavra
+- **Cards de estudo:** 16 cards que viram, um para cada termo da lista, com a explicação no verso
+- Botão **Conferir** com resultado por palavra (inclusive as incompletas)
 - **Contador de acertos** (`X de 16 palavras`)
 - Botão **Reiniciar**
 - Tema de fliperama: gabinete, fantasmas, bolinhas e um Pac-Man animado só com CSS
@@ -65,22 +70,14 @@ Depois de Conferir, cada pista também mostra o texto **✓ certa**, **✗ errad
 - Layout responsivo, que funciona no celular
 - Foco visível e textos de status, pensando em acessibilidade
 
-## 🗂️ Estrutura do projeto
-
-```
-arqcomp-cruzadinha/
-├── index.html   # estrutura da página
-├── style.css    # visual do jogo (tema fliperama)
-├── script.js    # lógica: tabuleiro, digitação, Conferir e Reiniciar
-└── README.md    # este arquivo
-```
 
 ## 🛠️ Como funciona por dentro
 
 - As palavras ficam num array (`PALAVRAS`) com resposta, posição inicial, direção e pista.
 - O JavaScript monta o tabuleiro e a numeração a partir desses dados, percorrendo a grade em ordem de leitura.
 - Casas compartilhadas por duas palavras são criadas uma única vez, e é isso que faz o cruzamento funcionar.
-- O **Conferir** compara, palavra por palavra, o que foi digitado com a resposta esperada.
+- Cada palavra guarda o seu estado (`certa`, `errada` ou `incompleta`). A verificação roda a cada letra digitada, só nas palavras que passam pela casa alterada, e o **Conferir** roda em todas.
+- Os dados de cada termo (pista, definição do card e curiosidade) ficam no mesmo array `PALAVRAS`, então a cruzadinha, o "Você sabia?" e os cards usam a mesma fonte.
 - O número de acertos define a posição do Pac-Man (uma variável CSS) e quantas bolinhas já foram comidas. Com todas as palavras certas, o gabinete ganha a classe `livre` e a saída abre.
 
 
