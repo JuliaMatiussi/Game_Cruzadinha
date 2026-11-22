@@ -6,13 +6,6 @@
 
 **O Pac-Man está preso dentro do gabinete. Resolva a cruzadinha para soltá-lo!**
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?logo=github&logoColor=white)
-
-### 👉 [**Jogar agora**](https://SEU-USUARIO.github.io/arqcomp-cruzadinha/) 👈
-
 </div>
 
 ---
@@ -72,34 +65,6 @@ Depois de Conferir, cada pista também mostra o texto **✓ certa**, **✗ errad
 - Layout responsivo, que funciona no celular
 - Foco visível e textos de status, pensando em acessibilidade
 
-## 🔤 Palavras e pistas
-
-### Horizontais
-
-| Nº | Resposta | Pista |
-|----|----------|-------|
-| 1 | ROM | Memória não volátil gravada na fábrica, cujo conteúdo normalmente não pode ser alterado. |
-| 5 | RAM | Memória principal volátil, que perde tudo ao desligar, onde ficam os aplicativos em uso. |
-| 6 | CACHE | Memória pequena e veloz entre processador e RAM, que guarda dados usados com frequência. |
-| 8 | ADDRESSBUS | Trilhas por onde a CPU informa qual posição da memória quer ler ou gravar. |
-| 9 | DUALCORE | Processador com dois núcleos de execução no mesmo chip. |
-| 11 | UC | Parte da CPU que dirige os demais componentes, dizendo o que cada um deve fazer. |
-| 13 | MICROCONTROLADOR | Chip único com processador, memória e portas de E/S, usado em sistemas embarcados. |
-| 15 | ULA | Circuito interno da CPU que faz somas, subtrações e comparações. |
-| 16 | FLASH | Memória não volátil regravável, apagada em blocos, usada em pen drives e SSDs. |
-
-### Verticais
-
-| Nº | Resposta | Pista |
-|----|----------|-------|
-| 2 | MEMORIADEMASSA | Guarda arquivos e programas de forma permanente, com grande capacidade, como HD ou SSD. |
-| 3 | REGISTRADORES | Pequenas memórias internas da CPU, as mais rápidas, que guardam dados em uso imediato. |
-| 4 | DATABUS | Trilhas por onde trafegam os valores lidos ou gravados entre CPU, memória e periféricos. |
-| 7 | QUADCORE | Processador com quatro núcleos de execução no mesmo chip. |
-| 10 | EEPROM | Memória não volátil regravável em que cada byte pode ser alterado separadamente. |
-| 12 | DMA | Técnica que permite a periféricos trocarem dados com a memória sem ocupar a CPU. |
-| 14 | CPU | Componente que busca, decodifica e executa as instruções dos programas. |
-
 ## 🗂️ Estrutura do projeto
 
 ```
@@ -118,32 +83,6 @@ arqcomp-cruzadinha/
 - O **Conferir** compara, palavra por palavra, o que foi digitado com a resposta esperada.
 - O número de acertos define a posição do Pac-Man (uma variável CSS) e quantas bolinhas já foram comidas. Com todas as palavras certas, o gabinete ganha a classe `livre` e a saída abre.
 
-## 💻 Rodando localmente
-
-Não precisa instalar nada:
-
-```bash
-git clone https://github.com/SEU-USUARIO/arqcomp-cruzadinha.git
-cd arqcomp-cruzadinha
-# abra o index.html no navegador
-```
-
-## 🚀 Publicação
-
-O site é publicado com o **GitHub Pages**: *Settings → Pages → Deploy from a branch → `main` → `/ (root)`*.
-
-## 🌱 Versionamento
-
-As mensagens de commit seguem o padrão `tipo: descrição curta`:
-
-| Tipo | Uso |
-|---|---|
-| `feat` | nova funcionalidade |
-| `fix` | correção |
-| `style` | visual |
-| `docs` | documentação |
-
----
 
 <div align="center">
 
